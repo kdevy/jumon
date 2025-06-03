@@ -1,0 +1,16 @@
+{
+  "recommendations": [
+    "mosapride.zenkaku",
+    "ms-ceintl.vscode-language-pack-ja",
+    "ms-python.debugpy",
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "njpwerner.autodocstring",
+    "oderwat.indent-rainbow",
+    "visualstudioexptteam.intellicode-api-usage-examples",
+    "visualstudioexptteam.vscodeintellicode",
+    "wholroyd.jinja",
+    "cstrap.flask-snippets",
+    "mrmlnc.vscode-apache"
+  ],
+}

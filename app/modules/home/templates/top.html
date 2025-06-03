@@ -1,0 +1,46 @@
+{% extends 'home/default.html' %}
+
+{% block title %}
+jumon
+{% endblock %}
+
+{% block header %}
+header
+{% endblock %}
+
+{% block content %}
+contents
+{% endblock %}
+
+{% block script %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    });
+
+    function fetchApi(url, form, callback = null, errorCallback = null) {
+        const formData = new FormData(form);
+        const xhr = new XMLHttpRequest();
+
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                const data = JSON.parse(xhr.responseText);
+
+                if (data.errors) {
+                    alert("error");
+                    console.error("server error: ", data.errors);
+                    if (errorCallback) {
+                        errorCallback(data, xhr);
+                    }
+                } else if (callback) {
+                    callback(data);
+                }
+            }
+        };
+
+        xhr.send(formData);
+    }
+</script>
+{% endblock %}
