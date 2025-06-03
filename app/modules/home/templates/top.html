@@ -1,20 +1,71 @@
 {% extends 'home/default.html' %}
 
-{% block title %}
-jumon
-{% endblock %}
-
-{% block header %}
-header
-{% endblock %}
-
 {% block content %}
-contents
+<div class="flex h-screen">
+    <!-- 左サイドバー -->
+    <div class="w-1/3 border-r border-gray-700 flex flex-col">
+        <!-- タブボタン-->
+        <div class="flex border-b border-gray-700">
+            <button data-tab-group="side" data-tab-button="prompt_list"
+                class="px-4 py-2 hover:bg-gray-700 border-r border-gray-700"><i class="fa-solid fa-list"></i></button>
+            <button data-tab-group="side" data-tab-button="favo_prompt_list"
+                class="px-4 py-2 hover:bg-gray-700 border-r border-gray-700"><i class="fa-solid fa-star"></i></button>
+            <input type="text" placeholder="検索" class="bg-[#2d2d2d] text-white px-3 py-2 w-full outline-none" />
+        </div>
+
+        <div data-tab-group="side" data-tab-contents class="flex-1 overflow-auto bg-[#252526]">
+            <p>タブの内容</p>
+        </div>
+
+        <!-- フッター-->
+        <div class="border-t border-gray-700 p-4 bg-[#1e1e1e]">
+            <p class="text-sm text-gray-400">任意のテキストがここに表示されます</p>
+        </div>
+    </div>
+
+    <!-- メインエリア -->
+    <div class="flex-1 flex flex-col">
+        <!-- タブボタン 5,6 -->
+        <div class="flex border-b border-gray-700">
+            <button class="px-4 py-2 hover:bg-gray-700 border-r border-gray-700">Prompt</button>
+            <button class="px-4 py-2 hover:bg-gray-700 border-r border-gray-700">Search</button>
+        </div>
+
+        <!-- コンテンツエリア（5番と6番の内容） -->
+        <div class="flex-1 overflow-auto p-4 bg-[#1e1e1e]">
+            <p>ここにタブ5または6の内容が表示されます</p>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block script %}
 <script>
+    function fetch_prompt_list() {
+        return "リスト";
+    }
+
+    function fetch_favo_prompt_list() {
+        return "お気に入りリスト";
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener("click", function (event) {
+            const tabButton = event.target.closest("[data-tab-button]");
+
+            if (tabButton) {
+                const tabGroupName = tabButton.getAttribute('data-tab-group');
+                const tabName = tabButton.getAttribute('data-tab-button');
+                const tabContentsElm = document.querySelector(`[data-tab-group="${tabGroupName}"][data-tab-contents]`);
+                const anotherTabButtons = document.querySelectorAll(`[data-tab-group="${tabGroupName}"][data-tab-button]:not([data-tab-button="${tabName}"])`);
+
+                tabButton.classList.add("text-orange-300");
+                tabContentsElm.innerHTML = window["fetch_" + tabName].apply(window);
+                anotherTabButtons.forEach(function (btn) {
+                    btn.classList.remove("text-orange-300");
+                });
+            }
+        });
     });
 
     function fetchApi(url, form, callback = null, errorCallback = null) {

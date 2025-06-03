@@ -4,19 +4,14 @@
 <head>
     <meta charset="{{ system.charset }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% set page_title = self.title() %}
-    {% if page_title.strip() %}
-    <title>{{ page_title }} | jumon</title>
-    {% else %}
     <title>jumon</title>
-    {% endif %}
     <link rel="shortcut icon" href="{{url_for('static', filename='img/favicon.ico')}}" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/c8a365b521.js" crossorigin="anonymous"></script>
     {% block head %}{% endblock %}
 </head>
 
-<body>
+<body class="bg-[#1e1e1e] text-white font-sans">
     {% block content %}{% endblock %}
     {% block script %}{% endblock %}
 </body>
