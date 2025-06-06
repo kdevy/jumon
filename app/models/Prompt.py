@@ -9,3 +9,5 @@ class Prompt(db.Model):
     name = db.Column(db.String(300), nullable=False)
     prompt = db.Column(db.Text, nullable=False)
     description = db.Column(db.String(300), nullable=False)
+    is_favorite = db.Column(db.SmallInteger, nullable=True, server_default="0")
+    updated = db.Column(db.DateTime, nullable=True)
