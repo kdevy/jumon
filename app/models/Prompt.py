@@ -11,3 +11,15 @@ class Prompt(db.Model):
     description = db.Column(db.String(300), nullable=False)
     is_favorite = db.Column(db.SmallInteger, nullable=True, server_default="0")
     updated = db.Column(db.DateTime, nullable=True)
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "prompt_group_id": self.prompt_group_id,
+            "type": self.type,
+            "name": self.name,
+            "prompt": self.prompt,
+            "description": self.description,
+            "is_favorite": self.is_favorite,
+            "updated": self.updated,
+        }

@@ -54,7 +54,23 @@ class TopView(MethodView):
 
     def post(self):
         if request.is_json or request.headers.get("X-Requested-With") == "XMLHttpRequest":
-            context = {}
+            mode = request.form.get('mode')
+            if mode == "fetch_prompt_contents":
+                id = request.form.get('id')
+                if not id:
+                    return jsonify({"errors": "require param 'id'"})
 
-            return jsonify({})
+                query = db.session.query(Prompt).filter(Prompt.id == id)
+                prompt = db.session.execute(query).first()
+
+                if prompt[0].type == 2:
+                    query = db.session.query(Prompt) \
+                    .filter(Prompt.prompt_group_id == prompt[0].prompt_group_id) \
+                    .filter(Prompt.type == 1)
+                    base_prompt = db.session.execute(query).first()
+                    return jsonify({"base_prompt": base_prompt[0].to_dict(), "derivation_prompt": prompt[0].to_dict()})
+
+                return jsonify({"base_prompt": prompt[0].to_dict()})
+            else:
+                return jsonify({"errors": "invalid param 'mode'"})
         return "Invalid request", 400
