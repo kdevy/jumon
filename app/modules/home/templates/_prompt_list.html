@@ -1,7 +1,7 @@
 <ul class="space-y-2">
   {% for pg_row in prompt_group_list %}
   <li class="bg-[#2d2d2d] rounded border border-[#3c3c3c]">
-    <div class="flex items-center justify-between px-2 py-2 bg-[#333333] rounded-t">
+    <div class="flex items-center justify-between px-2 py-2 bg-[#333333] rounded-t cursor-pointer">
       <div class="flex items-center gap-2">
         <span class="text-[#d4d4d4]">▼</span>
         <span class="font-semibold text-[#569cd6]">{{ pg_row.name }}</span>
@@ -11,7 +11,8 @@
 
     <ul class="ml-6 mt-1 space-y-1 pb-2">
       {% for p_row in pg_row.prompt %}
-      <li class="flex items-center justify-between px-2 py-1 hover:bg-[#414141] rounded">
+      <li data-prompt-item data-id="{{ p_row.id }}"
+        class="flex items-center justify-between px-2 py-1 cursor-pointer hover:bg-[#414141] rounded">
         <div class="flex flex-col">
           <span class="text-[#dcdcaa]">{{ p_row.name }}</span>
           <span class="text-xs text-[#6a9955]">{{ p_row.updated.strftime('%Y/%m/%d') }}</span>
