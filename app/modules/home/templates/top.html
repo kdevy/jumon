@@ -2,12 +2,13 @@
 
 {% block head %}
 <script src="{{url_for('static', filename='js/lib/diff_match_patch_uncompressed.js')}}"></script>
+<script src="{{url_for('static', filename='js/lib/custom_prettyHtml.js')}}"></script>
 {% endblock %}
 
 {% block content %}
 <div class="flex h-screen">
     <!-- 左サイドバー -->
-    <div class="w-1/4 border-r border-gray-700 flex flex-col">
+    <div class="w-1/5 border-r border-gray-700 flex flex-col">
         <!-- タブボタン-->
         <div class="flex border-b border-gray-700">
             <button data-tab-group="side" data-tab-button="prompt_list"
@@ -116,10 +117,25 @@
                 const tabContentsElm = document.querySelector(`[data-tab-group=main][data-tab-contents]`);
 
                 promptItemBox.classList.add("bg-[#917754]");
+
                 (async () => {
                     const { base_prompt, derivation_prompt } = await fetch_prompt_contents(id);
                     console.log("base_prompt:", base_prompt)
                     console.log("derivation_prompt:", derivation_prompt)
+
+                    const makePromptBox = (prompt_obj, text) => {
+                        return `<div class='relative bg-gray-100 text-gray-800 p-4 mb-5 rounded-md shadow-sm leading-relaxed'>
+                            <div class="absolute top-0 left-0 -translate-y-1/2 bg-blue-300 text-gray-800 text-sm font-semibold px-3 py-1 rounded-t-md shadow">${prompt_obj.name}</div>${text}</div>`;
+                    }
+
+                    if (derivation_prompt) {
+                        const difftool = new diff_match_patch();
+                        const diff_result = difftool.diff_main(base_prompt.prompt, derivation_prompt.prompt);
+                        tabContentsElm.innerHTML = makePromptBox(base_prompt, prompt_prettyHtml(diff_result, true, false));
+                        tabContentsElm.innerHTML += makePromptBox(derivation_prompt, prompt_prettyHtml(diff_result, false, true));
+                    } else {
+                        tabContentsElm.innerHTML = makePromptBox(base_prompt, base_prompt.prompt);
+                    }
                 })();
                 anotherPromptItemBoxes.forEach(function (elm) {
                     elm.classList.remove("bg-[#917754]");
