@@ -1,0 +1,20 @@
+.custom-scroll-dark::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scroll-dark::-webkit-scrollbar-track {
+  background: #1f2937;
+  /* Tailwind's gray-800 */
+}
+
+.custom-scroll-dark::-webkit-scrollbar-thumb {
+  background-color: #4b5563;
+  /* Tailwind's gray-600 */
+  border-radius: 4px;
+}
+
+/* Firefox */
+.custom-scroll-dark {
+  scrollbar-width: thin;
+  scrollbar-color: #4b5563 #1f2937;
+}

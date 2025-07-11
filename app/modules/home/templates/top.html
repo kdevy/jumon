@@ -3,6 +3,7 @@
 {% block head %}
 <script src="{{url_for('static', filename='js/lib/diff_match_patch_uncompressed.js')}}"></script>
 <script src="{{url_for('static', filename='js/lib/custom_prettyHtml.js')}}"></script>
+<link rel="stylesheet" href="{{url_for('static', filename='css/common.css')}}">
 {% endblock %}
 
 {% block content %}
@@ -19,7 +20,7 @@
             <input type="text" placeholder="検索" class="bg-[#2d2d2d] text-white px-3 py-2 w-full outline-none" />
         </div>
 
-        <div data-tab-group="side" data-tab-contents class="flex-1 overflow-auto p-4"
+        <div data-tab-group="side" data-tab-contents class="flex-1 overflow-auto p-4 custom-scroll-dark"
             style="background-color: #1e1e1e;color: #d4d4d4;">
             <div class="max-w-md mx-auto space-y-4">
                 <!-- ヘッダー -->
@@ -56,7 +57,7 @@
         </div>
 
         <!-- コンテンツエリア（5番と6番の内容） -->
-        <div data-tab-group="main" data-tab-contents class="flex-1 overflow-auto p-4 bg-[#1e1e1e]">
+        <div data-tab-group="main" data-tab-contents class="flex-1 overflow-auto p-4 bg-[#1e1e1e] custom-scroll-dark">
             <p>ここにタブ5または6の内容が表示されます</p>
         </div>
     </div>
