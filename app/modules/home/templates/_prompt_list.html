@@ -1,0 +1,31 @@
+<ul class="space-y-2">
+  {% for pg_row in prompt_group_list %}
+  <li class="bg-[#2d2d2d] rounded border border-[#3c3c3c]">
+    <div class="flex items-center justify-between px-2 py-2 bg-[#333333] rounded-t">
+      <div class="flex items-center gap-2">
+        <span class="text-[#d4d4d4]">▼</span>
+        <span class="font-semibold text-[#569cd6]">{{ pg_row.name }}</span>
+        <span class="text-sm text-[#808080]">({{ pg_row.prompt|length }})</span>
+      </div>
+    </div>
+
+    <ul class="ml-6 mt-1 space-y-1 pb-2">
+      {% for p_row in pg_row.prompt %}
+      <li class="flex items-center justify-between px-2 py-1 hover:bg-[#414141] rounded">
+        <div class="flex flex-col">
+          <span class="text-[#dcdcaa]">{{ p_row.name }}</span>
+          <span class="text-xs text-[#6a9955]">{{ p_row.updated.strftime('%Y/%m/%d') }}</span>
+        </div>
+        <span class="text-yellow-400">{{ p_row.is_favorite == 1 and '★' or '' }}</span>
+      </li>
+      {% endfor %}
+      <li>
+        <button
+          class="flex items-center gap-1 px-2 py-1 mt-1 text-sm text-white bg-[#3c3c3c] rounded hover:bg-[#505050]">
+          <span class="text-[#4ec9b0]">＋</span> アイテム追加
+        </button>
+      </li>
+    </ul>
+  </li>
+  {% endfor %}
+</ul>
