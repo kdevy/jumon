@@ -26,7 +26,7 @@ class TopView(MethodView):
             Prompt.is_favorite,
             Prompt.updated,
         ) \
-        .order_by(asc(Prompt.type), desc(Prompt.updated), desc(Prompt.id))
+        .order_by(asc(Prompt.type), asc(Prompt.updated), asc(Prompt.id))
         prompt_list = db.session.execute(query).mappings().all()
 
         return [prompt_group_list, prompt_list]
