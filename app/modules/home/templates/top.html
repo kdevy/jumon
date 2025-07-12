@@ -100,10 +100,10 @@
                 const tabContentsElm = document.querySelector(`[data-tab-group="${tabGroupName}"][data-tab-contents]`);
                 const anotherTabButtons = document.querySelectorAll(`[data-tab-group="${tabGroupName}"][data-tab-button]:not([data-tab-button="${tabName}"])`);
 
-                tabButton.classList.add("text-orange-300");
+                tabButton.classList.add("current");
                 tabContentsElm.innerHTML = window["fetch_" + tabName].apply(window);
                 anotherTabButtons.forEach(function (btn) {
-                    btn.classList.remove("text-orange-300");
+                    btn.classList.remove("current");
                 });
             }
 
@@ -114,7 +114,7 @@
                 const anotherPromptItemBoxes = document.querySelectorAll(`[data-prompt-item]:not([data-id="${id}"])`);
                 const tabContentsElm = document.querySelector(`[data-tab-group=main][data-tab-contents]`);
 
-                promptItemBox.classList.add("bg-[#917754]");
+                promptItemBox.classList.add("selected");
 
                 (async () => {
                     const { base_prompt, derivation_prompt } = await fetch_prompt_contents(id);
@@ -135,7 +135,7 @@
                     }
                 })();
                 anotherPromptItemBoxes.forEach(function (elm) {
-                    elm.classList.remove("bg-[#917754]");
+                    elm.classList.remove("selected");
                 });
             }
         });

@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  [data-tab-button].current {
+    @apply text-orange-300;
+  }
+
+  [data-prompt-item].selected {
+    @apply bg-[#917754];
+  }
+}

@@ -22,4 +22,5 @@
         "/.cache/": true
     },
     "editor.experimental.asyncTokenization": true,
+    "css.validate": false
 }
