@@ -77,11 +77,9 @@
         const formData = new FormData();
         formData.append("mode", "fetch_prompt_contents");
         formData.append("id", id);
-        console.log("aa", ...formData.entries())
 
         try {
             const data = await fetchApi("#", formData);
-            console.log("fetch_prompt_contents api result:", data);
             return data;
         } catch (error) {
             console.error(error);
@@ -120,9 +118,6 @@
 
                 (async () => {
                     const { base_prompt, derivation_prompt } = await fetch_prompt_contents(id);
-                    console.log("base_prompt:", base_prompt)
-                    console.log("derivation_prompt:", derivation_prompt)
-
                     const makePromptBox = (prompt_obj, text) => {
                         return `<div class='relative bg-gray-100 text-gray-800 p-4 pt-8 mb-5 rounded-md shadow-sm leading-relaxed' style='font-size: 0.93rem;'>
                             <div class="absolute top-3.5 left-0 -translate-y-1/2 bg-gray-300 text-gray-800 text-sm font-semibold px-3 py-1 rounded-tl-md rounded-br-md shadow">${prompt_obj.name}</div>
@@ -154,7 +149,7 @@
             if (form.nodeName) {
                 formData = new FormData(form);
             }
-            console.log("formData", ...formData.entries())
+            console.log("formData:", ...formData.entries())
 
             xhr.open("POST", url, true);
             xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
