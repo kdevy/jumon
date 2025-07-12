@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jumon</title>
     <link rel="shortcut icon" href="{{url_for('static', filename='img/favicon.ico')}}" type="image/x-icon">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/lib/tailwindcss/output.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/common.css')}}">
     <script src="https://kit.fontawesome.com/c8a365b521.js" crossorigin="anonymous"></script>
     {% block head %}{% endblock %}
 </head>
