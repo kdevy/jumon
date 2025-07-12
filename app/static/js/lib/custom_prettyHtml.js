@@ -13,7 +13,7 @@ prompt_prettyHtml = function (diffs, is_undisplay_insert = false, is_undisplay_d
       case DIFF_INSERT:
         if (is_undisplay_insert)
           break;
-        html[x] = '<ins style="background:#c0fcc0;">' + text + '</ins>';
+        html[x] = '<span style="background:#c0fcc0;">' + text + '</span>';
         break;
       case DIFF_DELETE:
         if (is_undisplay_delete)

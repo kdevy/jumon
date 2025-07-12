@@ -8,14 +8,15 @@
 {% block content %}
 <div class="flex h-screen">
     <!-- 左サイドバー -->
-    <div class="w-1/5 border-r border-gray-700 flex flex-col">
+    <div class="w-1/4 border-r border-gray-700 flex flex-col">
         <!-- タブボタン-->
         <div class="flex border-b border-gray-700">
             <button data-tab-group="side" data-tab-button="prompt_list"
-                class="px-4 py-2 hover:bg-gray-700 border-r border-gray-700 text-orange-300"><i
+                class="px-4 py-2 hover:bg-gray-700 border-r border-gray-700 text-orange-300 cursor-pointer"><i
                     class="fa-solid fa-list"></i></button>
             <button data-tab-group="side" data-tab-button="favo_prompt_list"
-                class="px-4 py-2 hover:bg-gray-700 border-r border-gray-700"><i class="fa-solid fa-star"></i></button>
+                class="px-4 py-2 hover:bg-gray-700 border-r border-gray-700 cursor-pointer"><i
+                    class="fa-solid fa-star"></i></button>
             <input type="text" placeholder="検索" class="bg-[#2d2d2d] text-white px-3 py-2 w-full outline-none" />
         </div>
 
@@ -50,9 +51,9 @@
         <!-- タブボタン 5,6 -->
         <div class="flex border-b border-gray-700">
             <button data-tab-group="main" data-tab-button="prompt_contents"
-                class="px-4 py-2 hover:bg-gray-700 border-r border-gray-700 text-orange-300">Prompt</button>
+                class="px-4 py-2 hover:bg-gray-700 border-r border-gray-700 text-orange-300 cursor-pointer">Prompt</button>
             <button data-tab-group="main" data-tab-button="search_contents"
-                class="px-4 py-2 hover:bg-gray-700 border-r border-gray-700">Search</button>
+                class="px-4 py-2 hover:bg-gray-700 border-r border-gray-700 cursor-pointer">Search</button>
         </div>
 
         <!-- コンテンツエリア（5番と6番の内容） -->
