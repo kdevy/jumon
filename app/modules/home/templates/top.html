@@ -125,8 +125,10 @@
                     console.log("derivation_prompt:", derivation_prompt)
 
                     const makePromptBox = (prompt_obj, text) => {
-                        return `<div class='relative bg-gray-100 text-gray-800 p-4 mb-5 rounded-md shadow-sm leading-relaxed'>
-                            <div class="absolute top-0 left-0 -translate-y-1/2 bg-blue-300 text-gray-800 text-sm font-semibold px-3 py-1 rounded-t-md shadow">${prompt_obj.name}</div>${text}</div>`;
+                        return `<div class='relative bg-gray-100 text-gray-800 p-4 pt-8 mb-5 rounded-md shadow-sm leading-relaxed' style='font-size: 0.93rem;'>
+                            <div class="absolute top-3.5 left-0 -translate-y-1/2 bg-gray-300 text-gray-800 text-sm font-semibold px-3 py-1 rounded-tl-md rounded-br-md shadow">${prompt_obj.name}</div>
+                            <div class="absolute top-3.5 right-9 -translate-y-1/2 bg-orange-200 text-gray-800 text-sm font-semibold px-3 py-1 rounded-bl-md shadow cursor-pointer"><i class="fa-solid fa-pen"></i></div>
+                            <div class="absolute top-3.5 right-0 -translate-y-1/2 bg-sky-200 text-gray-800 text-sm font-semibold px-3 py-1 rounded-tr-md shadow cursor-pointer"><i class="fa-solid fa-copy"></i></div>${text}</div>`;
                     }
 
                     if (derivation_prompt) {
